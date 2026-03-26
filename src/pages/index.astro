@@ -1,8 +1,11 @@
 ---
-import Welcome from '../components/Welcome.astro';
+
+import HeroComponents from '@/components/Hero/hero';
+import ProyectComponents from '@/components/projects/projects';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
-	<Welcome/>
+<HeroComponents client:load/>
+<ProyectComponents client:load/>
 </Layout>

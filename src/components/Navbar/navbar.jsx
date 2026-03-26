@@ -4,7 +4,8 @@ import { useState, useEffect, useRef, useCallback } from "react";
 const menuItems = [
     { label: "CV", href: "/cv" },
     { label: "Projects", href: "/projects" },
-    { label: "About Me", href: "/about" },
+    { label: "Sobre mi", href: "/#about" },
+    { label: "Habilidades", href: "/#skill" },
 ];
 
 export default function Navbar({ textColor = "white" }) {
