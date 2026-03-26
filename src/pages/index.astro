@@ -2,10 +2,12 @@
 
 import HeroComponents from '@/components/Hero/hero';
 import ProyectComponents from '@/components/projects/projects';
+import CV from '@/components/cv/cvComponent';
 import Layout from '../layouts/Layout.astro';
 ---
 
 <Layout>
 <HeroComponents client:load/>
 <ProyectComponents client:load/>
+<CV/>
 </Layout>

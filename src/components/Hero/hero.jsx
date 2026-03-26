@@ -34,7 +34,7 @@ export default function HeroComponents() {
                             <a href="#proyectos" className="bg-[#CCFF00] text-[#000000] px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center gap-2">
                                 Ver Proyectos <ChevronRight size={20} />
                             </a>
-                            <a href="mailto:hola@ejemplo.com" className="bg-[#18181b]/50 backdrop-blur-md border border-border-main text-text-main px-8 py-4 rounded-full font-bold text-lg hover:bg-[#09090b] transition-colors flex items-center gap-2">
+                            <a href="mailto:adriandfl99@gmail.com" className="bg-[#18181b]/50 backdrop-blur-md border border-border-main text-text-main px-8 py-4 rounded-full font-bold text-lg hover:bg-[#09090b] transition-colors flex items-center gap-2">
                                 <Mail size={20} /> Contáctame
                             </a>
                         </div>
@@ -57,7 +57,7 @@ export default function HeroComponents() {
             </div>
             <section id='about'>
                 <h3 className='justify-center items-center text-center mt-20 mx-auto max-w-7xl'>
-                    <SparklesText>Sobre Mi</SparklesText>
+                    <SparklesText>Sobre <span className='text-[#C8FF00]'>Mi</span></SparklesText>
 
                     <div className="text-center text-2xl md:text-3xl lg:text-4xl font-display leading-tight mt-10">
                         <p className="leading-relaxed">

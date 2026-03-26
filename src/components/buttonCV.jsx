@@ -1,11 +1,15 @@
 'use client'
 
+import { Globe } from "lucide-react"
 import { Button } from "./ui/button"
 
 export default function ButtonCV_Theme() {
 
     return (
-        <>
+        <div className="flex flex-row gap-4">
+            <Button className="bg-transparent -py-20 mx-auto" variant={"default"} size={"icon"}>
+                <Globe className="text-white/80 w-9 h-9 " />
+            </Button>
             <Button className="bg-[#C8FF00]" size={"lg"}>
                 <a
                     href="/cv.pdf"
@@ -20,6 +24,6 @@ export default function ButtonCV_Theme() {
                     Descargar CV
                 </a>
             </Button>
-        </>
+        </div>
     )
 }
