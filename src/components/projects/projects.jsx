@@ -1,5 +1,15 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
+import { PreviewLinkCard, PreviewLinkCardContent, PreviewLinkCardImage, PreviewLinkCardTrigger } from "../animate-ui/components/radix/preview-link-card";
+import { motion, AnimatePresence } from 'motion/react'
+import { Button } from "../ui/button";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../animate-ui/components/radix/dialog";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../animate-ui/components/animate/tabs";
+import { Globe, Smartphone } from "lucide-react";
+import { Safari } from "../ui/safari";
+import { Iphone } from "../ui/iphone";
+import { Android } from "../ui/android";
+
 
 const PROJECTS_PYTHON = [
     {
@@ -60,6 +70,8 @@ const PROJECTS_WEB = [
         title: "All Novu Web",
         desc: "Electrodomésticos de calidad líder en latinoamérica.",
         img: "/fotosProyects/allnovu.png",
+        android: '/fotosProyects/Samsung-Galaxy-S20-allnovu.com.png',
+        iphone: '/fotosProyects/iPhone-14-Plus-allnovu.com.png',
         tags: ["Next.js", "React", "TypeScript", "Tailwind"],
         githubUrl: null,
         demoUrl: "https://allnovu.com",
@@ -71,6 +83,8 @@ const PROJECTS_WEB = [
         desc: "Plataforma e-commerce de electrodomésticos.",
         img: "/fotosProyects/mercarapid.png",
         tags: ["Astro", "React", "Tailwind"],
+        android: '',
+        iphone: '',
         githubUrl: null,
         demoUrl: "https://mercarapid.com",
         className: "col-span-1 row-span-1",
@@ -82,6 +96,8 @@ const PROJECTS_WEB = [
         img: "/fotosProyects/bb_cafe.png",
         tags: ["Next.js", "React", "Shadcn"],
         githubUrl: "https://github.com/adrian9906/BB_Cafe",
+        android: '',
+        iphone: '',
         demoUrl: "https://bb-cafe.vercel.app/",
         className: "col-span-1 row-span-1",
     },
@@ -91,12 +107,50 @@ const PROJECTS_WEB = [
         desc: "Clon de Spotify con Astro, React y Svelte. Inspirado en MiduDev.",
         img: "/fotosProyects/fake_spotify.png",
         tags: ["Astro", "React", "Svelte", "Tailwind"],
+        android: '',
+        iphone: '',
         githubUrl: "https://github.com/adrian9906/Spotify-Clone-Astro",
         demoUrl: "https://fake-spotify-astro-71lu.vercel.app/",
         className: "col-span-2 row-span-1",
     },
 ];
-function BentoCard({ title, desc, img, tags, githubUrl, demoUrl, className }) {
+function IFrameIPhone({ url }) {
+    return (
+        <div className="relative mx-auto w-[280px] h-[580px] rounded-[50px] border-[8px] border-zinc-700 bg-zinc-800 shadow-2xl overflow-hidden flex flex-col">
+            {/* Dynamic island */}
+            <div className="h-10 bg-zinc-800 flex items-center justify-center shrink-0">
+                <div className="w-24 h-6 bg-black rounded-full" />
+            </div>
+            {/* iframe */}
+            <div className="flex-1 overflow-hidden relative">
+                <iframe
+                    src={url}
+                    className="absolute top-0 left-0 border-0"
+                    style={{
+                        width: "390px",        // ancho real de iPhone
+                        height: "100%",
+                        transform: "scale(0.69)",
+                        transformOrigin: "top left",
+                    }}
+                    sandbox="allow-scripts allow-same-origin"
+                />
+            </div>
+            {/* Home bar */}
+            <div className="h-6 bg-zinc-800 flex items-center justify-center shrink-0">
+                <div className="w-16 h-1 bg-zinc-500 rounded-full" />
+            </div>
+        </div>
+    );
+}
+function BentoCard({ title, desc, img, tags, githubUrl, demoUrl, className, android, iphone }) {
+    const [openModal, setOpenModal] = useState(false)
+    const [activeTab, setActiveTab] = useState("android");
+
+    const tabs = [
+        { value: "android", label: "Android", icon: Smartphone },
+        { value: "iphone", label: "iPhone", icon: Smartphone },
+        { value: "browser", label: "Browser", icon: Globe },
+    ];
     return (
         <div
             className={cn(
@@ -156,24 +210,149 @@ function BentoCard({ title, desc, img, tags, githubUrl, demoUrl, className }) {
                         </a>
                     )}
                     {demoUrl && demoUrl !== "#" && (
-                        <a
-                            href={demoUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="relative  flex items-center gap-2 rounded-full bg-[#C8FF00] px-4 py-2 text-sm font-semibold text-black transition-all duration-200 hover:bg-[#D4FF33] hover:shadow-[0_0_20px_rgba(200,255,0,0.4)]"
-                        >
-                            {/* External link icon */}
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
-                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" />
-                                <polyline points="15 3 21 3 21 9" />
-                                <line x1="10" y1="14" x2="21" y2="3" />
-                            </svg>
-                            Ver demo
-                        </a>
+                        <>
+                            <PreviewLinkCard href={demoUrl}
+                                followCursor={'x'}>
+                                <PreviewLinkCardTrigger
+                                    target="_blank"
+                                    className="underline relative flex items-center gap-2 rounded-full bg-[#C8FF00] px-4 py-2 text-sm font-semibold text-black transition-all duration-200 hover:bg-[#D4FF33] hover:shadow-[0_0_20px_rgba(200,255,0,0.4)]"
+                                >
+                                    Ver demo
+                                </PreviewLinkCardTrigger>
+                                <PreviewLinkCardContent
+                                    side={'top'}
+                                    sideOffset={2}
+                                    align={'center'}
+                                    alignOffset={2}
+                                    target="_blank"
+
+                                >
+                                    <PreviewLinkCardImage alt="Animate UI Docs" />
+                                </PreviewLinkCardContent>
+                            </PreviewLinkCard>
+                            {/* <button onClick={() => setOpenModal(true)} className="gap-2 rounded-full bg-[#C8FF00] px-4 py-2 text-sm font-semibold text-black transition-all duration-200 hover:bg-[#D4FF33] hover:shadow-[0_0_20px_rgba(200,255,0,0.4)]">
+                                asdasdas
+                            </button> */}
+                        </>
+
                     )}
                 </div>
 
             </div>
+            {/* <Dialog open={openModal} onOpenChange={setOpenModal}>
+                <DialogContent className="sm:max-w-[425px] md:max-w-[825px] bg-[#111111]">
+                    <div className="bg-gradient-to-br from-zinc-900 via-zinc-800 to-indigo-950 px-6 pt-6 pb-0">
+                        <DialogHeader className="mb-4">
+                            <DialogTitle className="text-white text-xl font-semibold tracking-tight">
+                                Device Preview
+                            </DialogTitle>
+                            <DialogDescription className="text-zinc-400 text-sm">
+                                Check how your content looks across different devices.
+                            </DialogDescription>
+                        </DialogHeader>
+
+                        <Tabs value={activeTab} onValueChange={setActiveTab}>
+                            <TabsList>
+                                <TabsTrigger value="android">Android</TabsTrigger>
+                                <TabsTrigger value="iphone">iPhone</TabsTrigger>
+                                <TabsTrigger value="browser">Browser</TabsTrigger>
+                            </TabsList>
+
+                            <div className="mt-4 overflow-y-auto max-h-[65vh] flex justify-center pb-6">
+
+                                {activeTab === "android" && (
+                                    <div className="relative mx-auto w-[280px] h-[560px] rounded-[40px] border-[7px] border-zinc-700 bg-zinc-800 shadow-2xl overflow-hidden flex flex-col">
+                                        <div className="h-8 bg-zinc-800 flex items-center justify-between px-4 shrink-0">
+                                            <span className="text-[9px] text-zinc-400 font-mono">9:41</span>
+                                            <div className="flex gap-1 items-center">
+                                                <div className="w-3 h-2 border border-zinc-400 rounded-[2px]">
+                                                    <div className="w-2/3 h-full bg-green-400 rounded-[1px]" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div className="flex-1 overflow-hidden relative bg-white">
+                                            <iframe
+                                                src={demoUrl}
+                                                title="Android Preview"
+                                                className="absolute top-0 left-0 border-0"
+                                                style={{
+                                                    width: "400px",
+                                                    height: "800px",
+                                                    transform: "scale(0.655)",
+                                                    transformOrigin: "top left",
+                                                }}
+                                                sandbox="allow-scripts allow-same-origin"
+                                            />
+                                        </div>
+                                        <div className="h-8 bg-zinc-800 flex items-center justify-around px-6 shrink-0">
+                                            <div className="w-4 h-4 border-2 border-zinc-500 rotate-45" />
+                                            <div className="w-4 h-4 border-2 border-zinc-500 rounded-full" />
+                                            <div className="w-4 h-0.5 bg-zinc-500 rounded" />
+                                        </div>
+                                    </div>
+                                )}
+
+                                {activeTab === "iphone" && (
+                                    <div className="relative mx-auto w-[280px] h-[580px] rounded-[50px] border-[8px] border-zinc-700 bg-zinc-800 shadow-2xl overflow-hidden flex flex-col">
+                                        <div className="h-10 bg-zinc-800 flex items-center justify-center shrink-0">
+                                            <div className="w-24 h-6 bg-black rounded-full" />
+                                        </div>
+                                        <div className="flex-1 overflow-hidden relative bg-white">
+                                            <iframe
+                                                src={demoUrl}
+                                                title="iPhone Preview"
+                                                className="absolute top-0 left-0 border-0"
+                                                style={{
+                                                    width: "390px",
+                                                    height: "844px",
+                                                    transform: "scale(0.69)",
+                                                    transformOrigin: "top left",
+                                                }}
+                                                sandbox="allow-scripts allow-same-origin"
+                                            />
+                                        </div>
+                                        <div className="h-6 bg-zinc-800 flex items-center justify-center shrink-0">
+                                            <div className="w-16 h-1 bg-zinc-500 rounded-full" />
+                                        </div>
+                                    </div>
+                                )}
+
+                                {activeTab === "browser" && (
+                                    <div className="w-full max-w-[680px] rounded-xl border border-zinc-700 bg-zinc-800 shadow-2xl overflow-hidden flex flex-col">
+                                        <div className="h-9 bg-zinc-700 flex items-center gap-2 px-3 shrink-0">
+                                            <div className="flex gap-1.5">
+                                                <div className="w-3 h-3 rounded-full bg-red-400" />
+                                                <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                                                <div className="w-3 h-3 rounded-full bg-green-400" />
+                                            </div>
+                                            <div className="flex-1 h-6 bg-zinc-600 rounded flex items-center px-3 gap-2">
+                                                <span className="text-[11px] text-zinc-300 truncate">
+                                                    🔒 {demoUrl}
+                                                </span>
+                                            </div>
+                                        </div>
+                                        <div className="relative overflow-hidden" style={{ height: "480px" }}>
+                                            <iframe
+                                                src={demoUrl}
+                                                title="Browser Preview"
+                                                className="absolute top-0 left-0 border-0"
+                                                style={{
+                                                    width: "1280px",
+                                                    height: "900px",
+                                                    transform: "scale(0.53)",
+                                                    transformOrigin: "top left",
+                                                }}
+                                                sandbox="allow-scripts allow-same-origin"
+                                            />
+                                        </div>
+                                    </div>
+                                )}
+
+                            </div>
+                        </Tabs>
+                    </div>
+                </DialogContent>
+            </Dialog> */}
         </div>
     );
 }
@@ -182,7 +361,7 @@ function BentoCard({ title, desc, img, tags, githubUrl, demoUrl, className }) {
 
 function BentoGrid({ projects }) {
     return (
-        <div className="grid grid-cols-3 grid-rows-3 gap-4 h-[880px] max-w-7xl">
+        <div className="grid grid-cols-3 grid-rows-3 gap-4 h-[880px] max-w-7xl ">
             {projects.map((p) => (
                 <BentoCard key={p.id} {...p} />
             ))}
@@ -197,30 +376,63 @@ const TABS = [
     { title: "Python", value: "python", projects: PROJECTS_PYTHON },
 ];
 
-function Tabs({ active, onChange }) {
+function Tabss({ active, onChange }) {
+    const [buttonPositions, setButtonPositions] = useState({ left: 0, width: 0 });
+    const buttonsRef = useRef([]);
+    useEffect(() => {
+        const activeIndex = TABS.findIndex(tab => tab.value === active);
+        const activeButton = buttonsRef.current[activeIndex];
+
+        if (activeButton) {
+            setButtonPositions({
+                left: activeButton.offsetLeft,
+                width: activeButton.offsetWidth
+            });
+        }
+    }, [active]);
+
     return (
         <div className="relative flex items-center gap-1 rounded-full border border-white/10 bg-[#111111] p-1 w-fit">
-            {TABS.map((tab) => (
-                <button
+            {/* Indicador animado */}
+            <motion.div
+                className="absolute rounded-full bg-[#C8FF00]"
+                animate={{
+                    x: buttonPositions.left,
+                    width: buttonPositions.width
+                }}
+                transition={{
+                    type: "spring",
+                    stiffness: 500,
+                    damping: 40,
+                    duration: 0.3
+                }}
+                style={{
+                    height: "calc(100% - 8px)",
+                    top: "4px",
+                    left: 0,
+                }}
+            />
+
+            {TABS.map((tab, index) => (
+                <motion.button
                     key={tab.value}
+                    ref={el => buttonsRef.current[index] = el}
                     onClick={() => onChange(tab.value)}
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
                     className={cn(
-                        "relative z-10 rounded-full px-5 py-2 text-sm font-medium transition-all duration-300",
+                        "relative z-10 rounded-full px-5 py-2 text-sm font-medium transition-colors duration-300",
                         active === tab.value
                             ? "text-black"
                             : "text-white/50 hover:text-white"
                     )}
                 >
-                    {active === tab.value && (
-                        <span className="absolute inset-0 rounded-full bg-[#C8FF00]" />
-                    )}
                     <span className="relative">{tab.title}</span>
-                </button>
+                </motion.button>
             ))}
         </div>
     );
 }
-
 // ─── SECTION ─────────────────────────────────────────────────────────────────
 
 export default function ProjectsSection() {
@@ -244,7 +456,7 @@ export default function ProjectsSection() {
 
                 {/* Tabs */}
                 <div className="mb-8">
-                    <Tabs active={activeTab} onChange={setActiveTab} />
+                    <Tabss active={activeTab} onChange={setActiveTab} />
                 </div>
 
                 {/* Grid */}

@@ -61,7 +61,9 @@ export default function CV() {
                         <h2 className="text-5xl md:text-7xl font-display font-black tracking-tighter text-[#ffffff]">CURRICULUM<span className="text-[#C8FF00]">.</span></h2>
                         <button className="flex items-center gap-2 bg-[#C8FF00] text-black px-8 py-4 rounded-full font-bold hover:bg-[#C8FF00]/85 transition-colors border border-transparent hover:border-accent">
                             <Download size={20} />
-                            Descargar PDF
+                            <a href="https://drive.google.com/file/d/17PwtNhnC8WxPztyeRpM720rxQXpFzxZo/view?usp=drive_link">
+                                Obtener CV
+                            </a>
                         </button>
                     </div>
                 </div>

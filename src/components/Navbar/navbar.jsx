@@ -3,7 +3,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 
 const menuItems = [
     { label: "CV", href: "/#cv" },
-    { label: "Projects", href: "/#proyectos" },
+    { label: "Proyectos", href: "/#proyectos" },
     { label: "Sobre mi", href: "/#about" },
     { label: "Habilidades", href: "/#skill" },
 ];

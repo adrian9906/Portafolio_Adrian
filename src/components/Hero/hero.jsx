@@ -3,6 +3,8 @@ import { ChevronRight, Mail } from 'lucide-react';
 import { motion } from 'motion/react';
 import { SparklesText } from '../ui/sparkles-text';
 import { Highlighter } from '../ui/highlighter';
+import TrueFocus from '../TrueFocus';
+import LightRays from '../LightRays';
 
 const SKILLS = [
     "JavaScript", "TypeScript", "React & Next.js", "Node.js & Express", "Astro", "Angular", "Python", "JAVA", "Machine Learning",
@@ -18,28 +20,61 @@ export default function HeroComponents() {
                     <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-[120px]" />
                 </div>
 
-                <div className="max-w-6xl mx-auto text-center z-10">
-                    <motion.div
-                        initial={{ opacity: 0, y: 30 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        transition={{ duration: 0.8, ease: "easeOut" }}
-                    >
-                        <p className="text-[#C8FF00] font-mono mb-6 tracking-widest uppercase text-sm md:text-base">Desarrollador Full Stack</p>
-                        <h1 className="text-6xl md:text-8xl lg:text-9xl font-display font-black leading-[0.85] tracking-tighter mb-8 text-[#ffffff]">
-                            CREANDO<br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ffffff] to-[#a1a1aa]">EXPERIENCIAS</span><br />
-                            DIGITALES<span className='text-[#C8FF00]'>.</span>
-                        </h1>
-                        <div className="flex flex-wrap justify-center gap-4 mt-12">
-                            <a href="#proyectos" className="bg-[#CCFF00] text-[#000000] px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center gap-2">
-                                Ver Proyectos <ChevronRight size={20} />
-                            </a>
-                            <a href="mailto:adriandfl99@gmail.com" className="bg-[#18181b]/50 backdrop-blur-md border border-border-main text-text-main px-8 py-4 rounded-full font-bold text-lg hover:bg-[#09090b] transition-colors flex items-center gap-2">
-                                <Mail size={20} /> Contáctame
-                            </a>
-                        </div>
-                    </motion.div>
+
+
+                {/* LightRays ocupando toda la pantalla */}
+                <div className="absolute inset-0 w-full h-full z-0">
+                    <LightRays
+                        raysOrigin="top-center"
+                        raysColor="#ffffff"
+                        raysSpeed={1}
+                        lightSpread={0.5}
+                        rayLength={3}
+                        followMouse={true}
+                        mouseInfluence={0.1}
+                        noiseAmount={0}
+                        distortion={0}
+                        className="custom-rays"
+                        pulsating={false}
+                        fadeDistance={1}
+                        saturation={1}
+                    />
                 </div>
+
+                {/* Contenido centrado pero sin limitar el fondo */}
+                <div className="relative z-10 flex items-center justify-center min-h-screen">
+                    <div className="max-w-6xl mx-auto text-center px-4">
+                        <motion.div
+                            initial={{ opacity: 0, y: 30 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            transition={{ duration: 0.8, ease: "easeOut" }}
+                        >
+                            <TrueFocus
+                                sentence="Desarrollador Full Stack"
+                                manualMode={false}
+                                blurAmount={5}
+                                borderColor="#5227FF"
+                                animationDuration={1.5}
+                                pauseBetweenAnimations={1}
+                                glowColor='#C8FF00'
+                            />
+                            <h1 className="text-6xl md:text-8xl lg:text-9xl font-display font-black leading-[0.85] tracking-tighter mb-8 text-[#ffffff]">
+                                CREANDO<br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ffffff] to-[#a1a1aa]">EXPERIENCIAS</span><br />
+                                DIGITALES<span className='text-[#C8FF00]'>.</span>
+                            </h1>
+                            <div className="flex flex-wrap justify-center gap-4 mt-12">
+                                <a href="#proyectos" className="bg-[#CCFF00] text-[#000000] px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center gap-2">
+                                    Ver Proyectos <ChevronRight size={20} />
+                                </a>
+                                <a href="mailto:adriandfl99@gmail.com" className="bg-[#18181b]/50 backdrop-blur-md border border-border-main text-text-main px-8 py-4 rounded-full font-bold text-lg hover:bg-[#09090b] transition-colors flex items-center gap-2">
+                                    <Mail size={20} /> Contáctame
+                                </a>
+                            </div>
+                        </motion.div>
+                    </div>
+                </div>
+
 
             </section>
             <div className="relative flex overflow-x-hidden gap-6 mt-10 bg-[#CCFF00] text-[#000000] py-4 print:hidden -rotate-2 scale-110 my-12 shadow-xl">
@@ -129,6 +164,6 @@ export default function HeroComponents() {
                     </div>
                 </div>
             </section>
-        </div>
+        </div >
     )
 }
