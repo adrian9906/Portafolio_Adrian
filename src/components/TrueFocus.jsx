@@ -69,7 +69,7 @@ const TrueFocus = ({
           <span
             key={index}
             ref={el => (wordRefs.current[index] = el)}
-            className={`focus-word ${manualMode ? 'manual' : ''} ${isActive && !manualMode ? 'active' : ''} text-[#C8FF00] font-mono mb-6 tracking-widest uppercase text-sm md:text-base`}
+            className={`focus-word ${manualMode ? 'manual' : ''} ${isActive && !manualMode ? 'active' : ''} text-[#2563eb] dark:text-[#C8FF00] font-mono mb-6 tracking-widest uppercase text-sm md:text-base`}
             style={{
               filter: manualMode
                 ? isActive

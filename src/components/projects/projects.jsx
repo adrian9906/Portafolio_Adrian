@@ -1,14 +1,9 @@
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { PreviewLinkCard, PreviewLinkCardContent, PreviewLinkCardImage, PreviewLinkCardTrigger } from "../animate-ui/components/radix/preview-link-card";
-import { motion, AnimatePresence } from 'motion/react'
-import { Button } from "../ui/button";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "../animate-ui/components/radix/dialog";
-import { Tabs, TabsContent, TabsList, TabsTrigger } from "../animate-ui/components/animate/tabs";
+import { motion } from 'motion/react'
 import { Globe, Smartphone } from "lucide-react";
-import { Safari } from "../ui/safari";
-import { Iphone } from "../ui/iphone";
-import { Android } from "../ui/android";
+
 
 
 const PROJECTS_PYTHON = [
@@ -155,7 +150,7 @@ function BentoCard({ title, desc, img, tags, githubUrl, demoUrl, className, andr
         <div
             className={cn(
                 "group relative overflow-hidden rounded-2xl border border-white/10 bg-[#111111]",
-                "transition-all duration-300 hover:border-[#C8FF00]/40 hover:shadow-[0_0_30px_rgba(200,255,0,0.08)]",
+                "transition-all duration-300 hover:border-[#2563eb]/40 dark:hover:border-[#C8FF00]/40 hover:shadow-[0_0_30px_rgba(200,255,0,0.08)]",
                 className
             )}
         >
@@ -179,20 +174,20 @@ function BentoCard({ title, desc, img, tags, githubUrl, demoUrl, className, andr
 
             {/* Info inferior */}
             <div className="absolute bottom-0 left-0 right-0 z-10 p-4 translate-y-1 transition-transform duration-300 group-hover:translate-y-0">
-                <h3 className="font-display font-black text-xl text-white uppercase tracking-tight leading-tight">
+                <h3 className="font-display font-black text-base md:text-xl text-white uppercase tracking-tight leading-tight">
                     {title}
                 </h3>
                 <div className="mt-2 flex flex-wrap gap-1 ">
                     {tags.map((tag) => (
                         <span
                             key={tag}
-                            className="rounded-full bg-[#C8FF00]/10 border border-[#C8FF00]/20 px-2 py-0.5 text-lg font-mono text-[#C8FF00]"
+                            className="rounded-full dark:bg-[#C8FF00]/10 border bg-[#2563eb]/10 border-[#2563eb]/20 dark:border-[#C8FF00]/20 px-2 py-0.5 text-xs md:text-lg font-mono text-[#2563eb] dark:text-[#C8FF00]"
                         >
                             {tag}
                         </span>
                     ))}
                 </div>
-                <p className="mt-1 text-xs text-white/60 line-clamp-2 max-h-0 overflow-hidden transition-all duration-300 group-hover:max-h-20">
+                <p className="mt-1 text-xs text-white dark:text-muted line-clamp-2 max-h-0 overflow-hidden transition-all duration-300 group-hover:max-h-20">
                     {desc}
                 </p>
                 <div className="flex gap-4 opacity-0 transition-opacity duration-300 group-hover:opacity-100 group-hover:mt-6 z-20">
@@ -201,7 +196,7 @@ function BentoCard({ title, desc, img, tags, githubUrl, demoUrl, className, andr
                             href={githubUrl}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="relative z-10 flex items-center gap-2 rounded-full border border-white/30 bg-black/70 px-4 py-2 text-sm text-white transition-all duration-200 hover:border-white hover:bg-white hover:text-black"
+                            className="relative z-10 flex items-center gap-2 rounded-full border border-main bg-card px-4 py-2 text-sm text-main transition-all duration-200 hover:opacity-80"
                         >
                             <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
                                 <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.342-3.369-1.342-.454-1.155-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.202 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
@@ -215,7 +210,7 @@ function BentoCard({ title, desc, img, tags, githubUrl, demoUrl, className, andr
                                 followCursor={'x'}>
                                 <PreviewLinkCardTrigger
                                     target="_blank"
-                                    className="underline relative flex items-center gap-2 rounded-full bg-[#C8FF00] px-4 py-2 text-sm font-semibold text-black transition-all duration-200 hover:bg-[#D4FF33] hover:shadow-[0_0_20px_rgba(200,255,0,0.4)]"
+                                    className="underline relative flex items-center gap-2 rounded-full bg-[#2563eb] dark:bg-[#C8FF00] px-4 py-2 text-xs md:text-sm font-semibold text-white dark:text-black transition-all duration-200 hover:bg-[#2563eb] dark:hover:bg-[#D4FF33] hover:shadow-[0_0_20px_rgba(37, 99, 235)] dark:hover:shadow-[0_0_20px_rgba(200,255,0,0.4)]"
                                 >
                                     Ver demo
                                 </PreviewLinkCardTrigger>
@@ -361,7 +356,7 @@ function BentoCard({ title, desc, img, tags, githubUrl, demoUrl, className, andr
 
 function BentoGrid({ projects }) {
     return (
-        <div className="grid grid-cols-3 grid-rows-3 gap-4 h-[880px] max-w-7xl ">
+        <div className="grid grid-cols-2 grid-rows-4 gap-4 h-[880px] max-w-7xl md:grid-cols-3 md:grid-rows-3">
             {projects.map((p) => (
                 <BentoCard key={p.id} {...p} />
             ))}
@@ -392,10 +387,10 @@ function Tabss({ active, onChange }) {
     }, [active]);
 
     return (
-        <div className="relative flex items-center gap-1 rounded-full border border-white/10 bg-[#111111] p-1 w-fit">
+        <div className="relative flex items-center gap-1 rounded-full border border-main bg-sec p-1 w-fit">
             {/* Indicador animado */}
             <motion.div
-                className="absolute rounded-full bg-[#C8FF00]"
+                className="absolute rounded-full bg-[#2563eb] text-white dark:text-black dark:bg-[#C8FF00]"
                 animate={{
                     x: buttonPositions.left,
                     width: buttonPositions.width
@@ -423,11 +418,11 @@ function Tabss({ active, onChange }) {
                     className={cn(
                         "relative z-10 rounded-full px-5 py-2 text-sm font-medium transition-colors duration-300",
                         active === tab.value
-                            ? "text-black"
-                            : "text-white/50 hover:text-white"
+                            ? "text-main"
+                            : "text-muted hover:text-main"
                     )}
                 >
-                    <span className="relative">{tab.title}</span>
+                    <span className={`relative ${active === tab.value ? 'text-white dark:text-black' : 'text-black dark:text-white'} `}>{tab.title}</span>
                 </motion.button>
             ))}
         </div>
@@ -445,11 +440,11 @@ export default function ProjectsSection() {
             <div className="max-w-7xl mx-auto">
 
                 {/* Header */}
-                <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-                    <h2 className="text-5xl md:text-7xl font-display font-black tracking-tighter text-white">
-                        PROYECTOS<span className="text-[#C8FF00]">.</span>
+                <div className="flex flex-col md:flex-row justify-center md:justify-between items-center md:items-end mb-12 gap-6">
+                    <h2 className="text-5xl md:text-7xl font-display font-black tracking-tighter text-main">
+                        PROYECTOS<span className="text-[#2563eb] dark:text-[#C8FF00]">.</span>
                     </h2>
-                    <p className="text-[#A0A0A0] max-w-md text-lg">
+                    <p className="text-muted max-w-md text-lg">
                         Una selección de mis trabajos más recientes, combinando diseño innovador y tecnología de punta.
                     </p>
                 </div>

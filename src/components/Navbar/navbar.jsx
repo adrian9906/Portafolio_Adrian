@@ -14,12 +14,73 @@ export default function Navbar({ textColor = "white" }) {
     const [activeIndicatorLeft, setActiveIndicatorLeft] = useState(0);
     const [activeIndicatorWidth, setActiveIndicatorWidth] = useState(0);
     const [pathname, setPathname] = useState("/");
+    const [theme, setTheme] = useState(null);
     const itemRefs = useRef([]);
     const containerRef = useRef(null);
 
+    // Function to get current theme
+    const getCurrentTheme = useCallback(() => {
+        if (typeof window !== "undefined") {
+            const saved = localStorage.getItem("theme");
+            // Check if there's a theme in localStorage, otherwise check system preference
+            if (saved) {
+                return saved;
+            }
+            // Optional: Check system preference
+            // const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+            // return systemPrefersDark ? "dark" : "light";
+            return "dark"; // Default to dark if no theme saved
+        }
+        return null;
+    }, []);
+
+    // Load and watch for theme changes
     useEffect(() => {
         setPathname(window.location.pathname);
-    }, []);
+
+        // Initial theme load
+        const currentTheme = getCurrentTheme();
+        setTheme(currentTheme);
+
+        // Create a MutationObserver to watch for theme changes in localStorage
+        const handleStorageChange = (e) => {
+            if (e.key === "theme") {
+                setTheme(e.newValue);
+            }
+        };
+
+        // Also watch for custom theme change events
+        const handleThemeChange = (e) => {
+            const newTheme = e.detail?.theme || getCurrentTheme();
+            setTheme(newTheme);
+        };
+
+        // Listen for storage events (for changes from other tabs)
+        window.addEventListener("storage", handleStorageChange);
+
+        // Listen for custom theme change event (for changes within the same tab)
+        window.addEventListener("themeChange", handleThemeChange);
+
+        // Optional: Watch for class changes on html element if you're using a theme toggle that adds classes
+        const observer = new MutationObserver(() => {
+            const currentTheme = getCurrentTheme();
+            setTheme(currentTheme);
+        });
+
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ["class", "data-theme"]
+        });
+
+        return () => {
+            window.removeEventListener("storage", handleStorageChange);
+            window.removeEventListener("themeChange", handleThemeChange);
+            observer.disconnect();
+        };
+    }, [getCurrentTheme]);
+
+    // Helper function to check if theme is light
+    const isLightTheme = theme === "light";
 
     const activeIndex = menuItems.findIndex(
         (item) =>
@@ -66,22 +127,26 @@ export default function Navbar({ textColor = "white" }) {
     }, [updateActiveIndicator, activeIndex]);
 
     const getTextClass = (isActive, isHovered) => {
-        if (textColor === "white") {
+        // Light mode colors
+        if (isLightTheme) {
             return isActive
-                ? "text-white font-semibold"
+                ? "text-blue-600 font-semibold"
                 : isHovered
-                    ? "text-[#C8FF00]"
-                    : "text-white/70";
+                    ? "text-blue-600"
+                    : "text-gray-600";
         }
+
+        // Dark mode colors (default)
         return isActive
-            ? "text-gray-900 font-semibold"
+            ? "text-main font-semibold"
             : isHovered
-                ? "text-gray-900"
-                : "text-gray-500 hover:text-gray-900";
+                ? "text-[#C8FF00]"
+                : "text-muted";
     };
 
-    const lineColor = textColor === "black" ? "#ffffff" : "#2563eb";
-    const lineClass = textColor === "black" ? "bg-black" : "bg-[#C8FF00]";
+    // Set line color based on theme
+    const lineColor = isLightTheme ? "#2563eb" : "#C8FF00";
+    const lineClass = isLightTheme ? "bg-blue-600" : "bg-[#C8FF00]";
 
     return (
         <>
@@ -133,20 +198,20 @@ export default function Navbar({ textColor = "white" }) {
                 onClick={() => setIsOpen(true)}
                 aria-label="Open menu"
             >
-                <Menu className="w-6 h-6 text-black" />
+                <Menu className={`w-6 h-6 ${isLightTheme ? "text-blue-600" : "text-[#C8FF00]"}`} />
             </button>
 
             {/* Mobile drawer */}
             {isOpen && (
                 <div className="fixed inset-0 bg-black/40 z-50 flex flex-col">
-                    <div className="w-full bg-white p-6 shadow-xl">
+                    <div className={`w-full p-6 shadow-xl ${isLightTheme ? "bg-white" : "bg-[#111111]"}`}>
                         <div className="flex justify-end mb-4">
                             <button
                                 onClick={() => setIsOpen(false)}
                                 className="p-1 rounded-md hover:bg-gray-100 transition-colors"
                                 aria-label="Close menu"
                             >
-                                <X className="w-6 h-6" />
+                                <X className={`w-6 h-6 ${isLightTheme ? "text-gray-800" : "text-white"}`} />
                             </button>
                         </div>
                         <div className="flex flex-col gap-1">
@@ -160,14 +225,19 @@ export default function Navbar({ textColor = "white" }) {
                                         key={item.href}
                                         href={item.href}
                                         onClick={() => setIsOpen(false)}
-                                        className={`relative text-lg py-3 px-4 rounded-lg transition-colors ${isActive
-                                            ? "text-blue-600 font-semibold bg-blue-50"
-                                            : "text-gray-800 hover:text-blue-600 hover:bg-blue-50"
+                                        className={`relative text-lg py-3 px-4 rounded-lg transition-colors ${isLightTheme
+                                            ? isActive
+                                                ? "text-blue-600 font-semibold bg-blue-50"
+                                                : "text-gray-800 hover:text-blue-600 hover:bg-blue-50"
+                                            : isActive
+                                                ? "text-[#C8FF00] font-semibold bg-[#C8FF00]/10"
+                                                : "text-white/80 hover:text-[#C8FF00] hover:bg-white/10"
                                             }`}
                                     >
                                         {item.label}
                                         {isActive && (
-                                            <span className="absolute bottom-0 left-0 w-full h-0.5 bg-blue-600 rounded-full" />
+                                            <span className={`absolute bottom-0 left-0 w-full h-0.5 rounded-full ${isLightTheme ? "bg-blue-600" : "bg-[#C8FF00]"
+                                                }`} />
                                         )}
                                     </a>
                                 );

@@ -18,7 +18,14 @@ export default function ThemeToggler({ duration = 400 }) {
 
         // Fallback para Firefox (no soporta startViewTransition aún)
         if (!document.startViewTransition) {
-            document.documentElement.classList.toggle("dark", nextTheme);
+            const html = document.documentElement;
+            if (nextTheme) {
+                html.classList.remove("light");
+                html.classList.add("dark");
+            } else {
+                html.classList.remove("dark");
+                html.classList.add("light");
+            }
             localStorage.setItem("theme", nextTheme ? "dark" : "light");
             setIsDark(nextTheme);
             return;
@@ -31,7 +38,14 @@ export default function ThemeToggler({ duration = 400 }) {
         );
 
         const transition = document.startViewTransition(() => {
-            document.documentElement.classList.toggle("dark", nextTheme);
+            const html = document.documentElement;
+            if (nextTheme) {
+                html.classList.remove("light");
+                html.classList.add("dark");
+            } else {
+                html.classList.remove("dark");
+                html.classList.add("light");
+            }
             localStorage.setItem("theme", nextTheme ? "dark" : "light");
             setIsDark(nextTheme);
         });
@@ -60,7 +74,7 @@ export default function ThemeToggler({ duration = 400 }) {
             ref={buttonRef}
             onClick={toggle}
             aria-label="Toggle theme"
-            className="relative flex items-center justify-center w-9 h-9 rounded-full text-white/80 hover:bg-white/10 hover:text-white transition-all duration-200"
+            className="relative flex items-center justify-center w-9 h-9 rounded-full text-muted hover:bg-sec transition-all duration-200"
         >
             {/* Sol */}
             <svg

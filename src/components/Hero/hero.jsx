@@ -16,8 +16,8 @@ export default function HeroComponents() {
         <div>
             <section id="inicio" className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-20 print:hidden">
                 <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#C8FF00]/20 rounded-full blur-[120px]" />
-                    <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/20 rounded-full blur-[120px]" />
+                    <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-[#2563eb]/10 dark:bg-[#C8FF00]/20 rounded-full blur-[120px]" />
+                    <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 dark:bg-purple-500/20 rounded-full blur-[120px]" />
                 </div>
 
 
@@ -58,16 +58,16 @@ export default function HeroComponents() {
                                 pauseBetweenAnimations={1}
                                 glowColor='#C8FF00'
                             />
-                            <h1 className="text-6xl md:text-8xl lg:text-9xl font-display font-black leading-[0.85] tracking-tighter mb-8 text-[#ffffff]">
+                            <h1 className="text-5xl md:text-8xl lg:text-9xl font-display font-black leading-[0.85] tracking-tighter mb-8 text-main">
                                 CREANDO<br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-[#ffffff] to-[#a1a1aa]">EXPERIENCIAS</span><br />
-                                DIGITALES<span className='text-[#C8FF00]'>.</span>
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 dark:from-gray-100 to-gray-600 dark:to-gray-400">EXPERIENCIAS</span><br />
+                                DIGITALES<span className='text-[#2563eb] dark:text-[#C8FF00]'>.</span>
                             </h1>
                             <div className="flex flex-wrap justify-center gap-4 mt-12">
-                                <a href="#proyectos" className="bg-[#CCFF00] text-[#000000] px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center gap-2">
+                                <a href="#proyectos" className="bg-[#2563eb] dark:bg-[#CCFF00] text-white dark:text-[#000000] px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center gap-2">
                                     Ver Proyectos <ChevronRight size={20} />
                                 </a>
-                                <a href="mailto:adriandfl99@gmail.com" className="bg-[#18181b]/50 backdrop-blur-md border border-border-main text-text-main px-8 py-4 rounded-full font-bold text-lg hover:bg-[#09090b] transition-colors flex items-center gap-2">
+                                <a href="mailto:adriandfl99@gmail.com" className="bg-sec border border-main text-main px-8 py-4 rounded-full font-bold text-lg hover:opacity-80 transition-colors flex items-center gap-2">
                                     <Mail size={20} /> Contáctame
                                 </a>
                             </div>
@@ -77,7 +77,7 @@ export default function HeroComponents() {
 
 
             </section>
-            <div className="relative flex overflow-x-hidden gap-6 mt-10 bg-[#CCFF00] text-[#000000] py-4 print:hidden -rotate-2 scale-110 my-12 shadow-xl">
+            <div className="relative flex overflow-x-hidden gap-6 mt-10 bg-[#2563eb] dark:bg-[#CCFF00] text-white dark:text-[#000000] py-4 print:hidden -rotate-2 scale-110 my-12 shadow-xl">
                 <motion.div
                     className="flex whitespace-nowrap"
                     animate={{ x: ["0%", "-50%"] }}
@@ -92,7 +92,7 @@ export default function HeroComponents() {
             </div>
             <section id='about'>
                 <h3 className='justify-center items-center text-center mt-20 mx-auto max-w-7xl'>
-                    <SparklesText>Sobre <span className='text-[#C8FF00]'>Mi</span></SparklesText>
+                    <SparklesText>Sobre <span className='text-[#2563eb] dark:text-[#C8FF00]'>Mi</span></SparklesText>
 
                     <div className="text-center text-2xl md:text-3xl lg:text-4xl font-display leading-tight mt-10">
                         <p className="leading-relaxed">
@@ -138,15 +138,15 @@ export default function HeroComponents() {
                     </div>
                 </h3>
             </section>
-            <section id="skill" className="py-24 px-6 bg-gray-950 mt-10 print:hidden">
+            <section id="skill" className="py-24 px-6 bg-sec mt-10 print:hidden">
                 <div className="max-w-4xl mx-auto text-center">
                     <motion.h2
                         initial={{ opacity: 0, y: 20 }}
                         whileInView={{ opacity: 1, y: 0 }}
                         viewport={{ once: true }}
-                        className="text-4xl md:text-6xl font-display font-black tracking-tighter mb-12 text-text-main"
+                        className="text-4xl md:text-6xl font-display font-black tracking-tighter mb-12 text-main"
                     >
-                        HABILIDADES <span className="text-[#CCFF00]">TÉCNICAS.</span>
+                        HABILIDADES <span className="text-[#2563eb] dark:text-[#CCFF00]">TÉCNICAS.</span>
                     </motion.h2>
                     <div className="flex flex-wrap justify-center gap-4">
                         {SKILLS.map((skill, i) => (
@@ -156,7 +156,7 @@ export default function HeroComponents() {
                                 whileInView={{ opacity: 1, scale: 1 }}
                                 viewport={{ once: true }}
                                 transition={{ delay: i * 0.15 }}
-                                className="bg-bg-main border border-border-main text-text-muted px-6 py-3 rounded-full text-lg font-medium hover:border-[#CCFF00] hover:text-[#CCFF00] transition-all duration-300 cursor-default shadow-sm hover:-translate-y-1"
+                                className="bg-card border dark:border-white border-black text-black dark:text-white px-6 py-3 rounded-full text-lg font-medium hover:border-[#2563eb] hover:text-[#2563eb] dark:hover:border-[#CCFF00] dark:hover:text-[#CCFF00] transition-all duration-300 cursor-default shadow-sm hover:-translate-y-1"
                             >
                                 {skill}
                             </motion.span>
