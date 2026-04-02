@@ -1,7 +1,7 @@
 ---
 import Navbar from '@/components/Navbar/navbar';
-
 import ThemeToggler from '@/components/themeButton';
+import LanguageSelector from '@/components/LanguageSelector';
 import "../styles/global.css";
 
 interface Props {
@@ -78,6 +78,7 @@ const {
 
         <!-- Acciones derecha -->
         <div class="flex items-center gap-3 shrink-0">
+          <LanguageSelector client:load />
           <ThemeToggler client:load />
           
         </div>

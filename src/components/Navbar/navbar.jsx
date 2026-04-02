@@ -1,14 +1,9 @@
 import { Menu, X } from "lucide-react";
 import { useState, useEffect, useRef, useCallback } from "react";
-
-const menuItems = [
-    { label: "CV", href: "/#cv" },
-    { label: "Proyectos", href: "/#proyectos" },
-    { label: "Sobre mi", href: "/#about" },
-    { label: "Habilidades", href: "/#skill" },
-];
+import { useLanguage } from "../../hooks/useLanguage";
 
 export default function Navbar({ textColor = "white" }) {
+    const { t } = useLanguage();
     const [isOpen, setIsOpen] = useState(false);
     const [hoveredIndex, setHoveredIndex] = useState(null);
     const [activeIndicatorLeft, setActiveIndicatorLeft] = useState(0);
@@ -18,50 +13,44 @@ export default function Navbar({ textColor = "white" }) {
     const itemRefs = useRef([]);
     const containerRef = useRef(null);
 
-    // Function to get current theme
+    const menuItems = [
+        { label: t("navbar.cv"), href: "/#cv" },
+        { label: t("navbar.projects"), href: "/#proyectos" },
+        { label: t("navbar.about"), href: "/#about" },
+        { label: t("navbar.skills"), href: "/#skill" },
+    ];
+
     const getCurrentTheme = useCallback(() => {
         if (typeof window !== "undefined") {
             const saved = localStorage.getItem("theme");
-            // Check if there's a theme in localStorage, otherwise check system preference
             if (saved) {
                 return saved;
             }
-            // Optional: Check system preference
-            // const systemPrefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-            // return systemPrefersDark ? "dark" : "light";
-            return "dark"; // Default to dark if no theme saved
+            return "dark";
         }
         return null;
     }, []);
 
-    // Load and watch for theme changes
     useEffect(() => {
         setPathname(window.location.pathname);
 
-        // Initial theme load
         const currentTheme = getCurrentTheme();
         setTheme(currentTheme);
 
-        // Create a MutationObserver to watch for theme changes in localStorage
         const handleStorageChange = (e) => {
             if (e.key === "theme") {
                 setTheme(e.newValue);
             }
         };
 
-        // Also watch for custom theme change events
         const handleThemeChange = (e) => {
             const newTheme = e.detail?.theme || getCurrentTheme();
             setTheme(newTheme);
         };
 
-        // Listen for storage events (for changes from other tabs)
         window.addEventListener("storage", handleStorageChange);
-
-        // Listen for custom theme change event (for changes within the same tab)
         window.addEventListener("themeChange", handleThemeChange);
 
-        // Optional: Watch for class changes on html element if you're using a theme toggle that adds classes
         const observer = new MutationObserver(() => {
             const currentTheme = getCurrentTheme();
             setTheme(currentTheme);
@@ -79,7 +68,6 @@ export default function Navbar({ textColor = "white" }) {
         };
     }, [getCurrentTheme]);
 
-    // Helper function to check if theme is light
     const isLightTheme = theme === "light";
 
     const activeIndex = menuItems.findIndex(
@@ -127,7 +115,6 @@ export default function Navbar({ textColor = "white" }) {
     }, [updateActiveIndicator, activeIndex]);
 
     const getTextClass = (isActive, isHovered) => {
-        // Light mode colors
         if (isLightTheme) {
             return isActive
                 ? "text-blue-600 font-semibold"
@@ -136,7 +123,6 @@ export default function Navbar({ textColor = "white" }) {
                     : "text-gray-600";
         }
 
-        // Dark mode colors (default)
         return isActive
             ? "text-main font-semibold"
             : isHovered
@@ -144,13 +130,11 @@ export default function Navbar({ textColor = "white" }) {
                 : "text-muted";
     };
 
-    // Set line color based on theme
     const lineColor = isLightTheme ? "#2563eb" : "#C8FF00";
     const lineClass = isLightTheme ? "bg-blue-600" : "bg-[#C8FF00]";
 
     return (
         <>
-            {/* Desktop nav */}
             <div
                 ref={containerRef}
                 className="hidden lg:flex items-center justify-center flex-1 gap-8 relative"
@@ -169,7 +153,6 @@ export default function Navbar({ textColor = "white" }) {
                             >
                                 <span className="relative z-10">{item.label}</span>
 
-                                {/* Hover underline */}
                                 <span
                                     className={`absolute bottom-0 left-1/2 -translate-x-1/2 h-0.5 ${lineClass} transition-all duration-300 ease-out ${isHovered && !isActive ? "w-3/4 opacity-60" : "w-0 opacity-0"
                                         }`}
@@ -179,7 +162,6 @@ export default function Navbar({ textColor = "white" }) {
                     );
                 })}
 
-                {/* Active indicator line */}
                 {activeIndex >= 0 && (
                     <div
                         className="absolute bottom-0 h-0.5 transition-all duration-500 ease-out"
@@ -192,7 +174,6 @@ export default function Navbar({ textColor = "white" }) {
                 )}
             </div>
 
-            {/* Mobile hamburger */}
             <button
                 className="lg:hidden ml-auto p-2 rounded-md hover:bg-white/10 transition-colors"
                 onClick={() => setIsOpen(true)}
@@ -201,7 +182,6 @@ export default function Navbar({ textColor = "white" }) {
                 <Menu className={`w-6 h-6 ${isLightTheme ? "text-blue-600" : "text-[#C8FF00]"}`} />
             </button>
 
-            {/* Mobile drawer */}
             {isOpen && (
                 <div className="fixed inset-0 bg-black/40 z-50 flex flex-col">
                     <div className={`w-full p-6 shadow-xl ${isLightTheme ? "bg-white" : "bg-[#111111]"}`}>

@@ -1,0 +1,102 @@
+{
+  "navbar": {
+    "cv": "CV",
+    "projects": "Proyectos",
+    "about": "Sobre mi",
+    "skills": "Habilidades"
+  },
+  "hero": {
+    "title": "Desarrollador Full Stack",
+    "subtitleLine1": "CREANDO",
+    "subtitleLine2": "EXPERIENCIAS",
+    "subtitleLine3": "DIGITALES",
+    "seeProjects": "Ver Proyectos",
+    "contact": "Contáctame",
+    "aboutMe": "Sobre Mi",
+    "aboutDescription1": {
+      "intro": "Soy un ",
+      "role": "Desarrollador Full Stack",
+      "experience": " con experiencia en la creación de aplicaciones web escalables y de alto rendimiento. En el frontend, domino tecnologías modernas como ",
+      "frontend": "React, Angular y Astro",
+      "interfaces": ", construyendo interfaces intuitivas con ",
+      "webTech": "HTML5, CSS3 y JavaScript",
+      "backend": ". En el backend, desarrollo APIs robustas y servicios escalables utilizando ",
+      "backendTech": "Python, C#, Java y Node.js"
+    },
+    "aboutDescription2": {
+      "intro": "Además, cuento con experiencia en el campo de la ",
+      "textMining": "Minería de Texto",
+      "and": " y ",
+      "ml": "Machine Learning",
+      "details": ", aplicando técnicas de procesamiento de lenguaje natural y modelos predictivos para extraer insights valiosos de datos no estructurados. Mi enfoque combina la atención al detalle en el diseño de experiencias de usuario con sólidas prácticas de arquitectura backend y ciencia de datos, asegurando ",
+      "qualities": "funcionales, mantenibles e inteligentes",
+      "end": " aplicaciones."
+    },
+    "technicalSkills": "HABILIDADES TÉCNICAS.",
+    "marquee": "Innovación · Desarrollo · Creatividad · Tecnología"
+  },
+  "projects": {
+    "title": "PROYECTOS.",
+    "description": "Una selección de mis trabajos más recientes, combinando diseño innovador y tecnología de punta.",
+    "web": "Web",
+    "python": "Python",
+    "seeDemo": "Ver demo",
+    "github": "GitHub"
+  },
+  "cv": {
+    "title": "CURRICULUM.",
+    "getCV": "Obtener CV",
+    "fullName": "ADRIAN DEV",
+    "role": "Desarrollador Full Stack",
+    "experience": "Experiencia Laboral",
+    "education": "Educación",
+    "skills": "Habilidades",
+    "languages": "Idiomas",
+    "spanish": "Español",
+    "native": "Nativo",
+    "english": "Inglés",
+    "englishLevel": "C1 Avanzado",
+    "degree": "Ingeniería en Software",
+    "university": "Universidad Tecnológica",
+    "period": "2018 - 2022",
+    "experiences": {
+      "allnovu": {
+        "role": "Software Developer",
+        "company": "ALL NOVU",
+        "period": "Ago 2025 – Presente",
+        "location": "La Habana, Cuba",
+        "items": [
+          "Desarrollé el sitio web oficial de la marca allnovu.com, que presenta el catálogo completo de electrodomésticos de la marca.",
+          "Desarrollé la primera calculadora solar de Cuba, disponible en allnovu.com/consumo, donde los usuarios pueden calcular su consumo energético y recibir recomendaciones de paneles solares e inversores.",
+          "Desarrollé una plataforma de comercio electrónico para la misma marca, diseñada para pantallas promocionales verticales, donde los usuarios pueden comprar los productos de la marca directamente; adicionalmente, cuando la pantalla está en modo de espera, se proyectan las promociones de la marca.",
+          "Desarrollé una automatización para crear hojas de cálculo de Excel automatizadas y subirlas a Google Drive, que sirvió como base de conocimiento para entrenar un modelo de inteligencia artificial.",
+          "Construí la base de conocimiento para un modelo de IA especializado en la venta de electrodomésticos."
+        ]
+      },
+      "cip": {
+        "role": "Software Developer",
+        "company": "CIP",
+        "period": "Ago 2022 – May 2025",
+        "location": "La Habana, Cuba",
+        "items": [
+          "Desarrollé un sistema capaz de detectar entidades nombradas personalizadas que ayudan con la extracción de información de portales de noticias.",
+          "Desarrollé un web scraper para recopilar información relevante de todos los portales de noticias nacionales e internacionales. Además, se creó un sistema de estadísticas para visualizar la información extraída relevante, como los temas que aparecen con mayor frecuencia en los artículos, y mostrar una nube de palabras con las palabras clave más utilizadas en los artículos.",
+          "Implementé una arquitectura Big Data para el análisis de flujos de texto utilizando tecnologías de código abierto como Apache Kafka, Apache Solr, Apache Spark y MongoDB. Las tareas de análisis incluyen clasificación de texto, reconocimiento de entidades nombradas, extracción de palabras clave y análisis de sentimientos. Esto facilita la toma de decisiones para los analistas de datos.",
+          "Implementé un algoritmo de similitud documental que identifica y compara documentos similares o idénticos a un documento específico. Esta herramienta es crucial para evaluar la unicidad del contenido en los medios y cuantificar el nivel de replicación de noticias en diferentes sitios de noticias.",
+          "Desarrollé una plataforma web integral llamada SAI (Sistema de Análisis de Información) utilizando Node.js y Next.js. Esta plataforma centraliza y unifica todas las herramientas del Centro, ofreciendo una solución integral para el análisis y gestión de información mediática. Las principales características y funcionalidades de SAI incluyen:",
+          "  1. Reconocimiento de entidades nombradas para identificar y clasificar elementos clave en los textos.",
+          "  2. Generación de nubes de etiquetas multi-término, proporcionando una visualización intuitiva de los temas más relevantes.",
+          "  3. Creación automática de informes PDF sobre cobertura mediática, con capacidad de enviarlos por correo electrónico.",
+          "  4. Sistema para generar estadísticas detalladas de medios, permitiendo un análisis cuantitativo en profundidad.",
+          "  5. Dashboard interactivo para un control y monitoreo eficiente de los medios.",
+          "  6. Motor de búsqueda avanzado integrado con la base de datos Apache Solr que permite búsquedas rápidas y precisas.",
+          "  7. Sistema de gestión y creación de perfiles de usuario para personalizar y automatizar la entrega de informes."
+        ]
+      }
+    }
+  },
+  "layout": {
+    "title": "Adrián. — Desarrollador Full Stack",
+    "description": "Portfolio de desarrollo full stack y diseño digital."
+  }
+}

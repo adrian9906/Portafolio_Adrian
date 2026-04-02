@@ -4,6 +4,8 @@ import { motion } from 'motion/react';
 import { SparklesText } from '../ui/sparkles-text';
 import { Highlighter } from '../ui/highlighter';
 import TrueFocus from '../TrueFocus';
+
+import { useLanguage } from '../../hooks/useLanguage';
 import LightRays from '../LightRays';
 
 const SKILLS = [
@@ -12,6 +14,8 @@ const SKILLS = [
     "Apache Kafka", "NLP", "Flask & FastApi"
 ];
 export default function HeroComponents() {
+    const { t } = useLanguage();
+
     return (
         <div>
             <section id="inicio" className="relative min-h-screen flex flex-col items-center justify-center px-6 pt-20 print:hidden">
@@ -22,7 +26,6 @@ export default function HeroComponents() {
 
 
 
-                {/* LightRays ocupando toda la pantalla */}
                 <div className="absolute inset-0 w-full h-full z-0">
                     <LightRays
                         raysOrigin="top-center"
@@ -41,7 +44,6 @@ export default function HeroComponents() {
                     />
                 </div>
 
-                {/* Contenido centrado pero sin limitar el fondo */}
                 <div className="relative z-10 flex items-center justify-center min-h-screen">
                     <div className="max-w-6xl mx-auto text-center px-4">
                         <motion.div
@@ -50,7 +52,7 @@ export default function HeroComponents() {
                             transition={{ duration: 0.8, ease: "easeOut" }}
                         >
                             <TrueFocus
-                                sentence="Desarrollador Full Stack"
+                                sentence={t("hero.title")}
                                 manualMode={false}
                                 blurAmount={5}
                                 borderColor="#5227FF"
@@ -59,16 +61,16 @@ export default function HeroComponents() {
                                 glowColor='#C8FF00'
                             />
                             <h1 className="text-5xl md:text-8xl lg:text-9xl font-display font-black leading-[0.85] tracking-tighter mb-8 text-main">
-                                CREANDO<br />
-                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 dark:from-gray-100 to-gray-600 dark:to-gray-400">EXPERIENCIAS</span><br />
-                                DIGITALES<span className='text-[#2563eb] dark:text-[#C8FF00]'>.</span>
+                                {t("hero.subtitleLine1")}<br />
+                                <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-900 dark:from-gray-100 to-gray-600 dark:to-gray-400">{t("hero.subtitleLine2")}</span><br />
+                                {t("hero.subtitleLine3")}<span className='text-[#2563eb] dark:text-[#C8FF00]'>.</span>
                             </h1>
                             <div className="flex flex-wrap justify-center gap-4 mt-12">
                                 <a href="#proyectos" className="bg-[#2563eb] dark:bg-[#CCFF00] text-white dark:text-[#000000] px-8 py-4 rounded-full font-bold text-lg hover:scale-105 transition-transform flex items-center gap-2">
-                                    Ver Proyectos <ChevronRight size={20} />
+                                    {t("hero.seeProjects")} <ChevronRight size={20} />
                                 </a>
                                 <a href="mailto:adriandfl99@gmail.com" className="bg-sec border border-main text-main px-8 py-4 rounded-full font-bold text-lg hover:opacity-80 transition-colors flex items-center gap-2">
-                                    <Mail size={20} /> Contáctame
+                                    <Mail size={20} /> {t("hero.contact")}
                                 </a>
                             </div>
                         </motion.div>
@@ -85,55 +87,57 @@ export default function HeroComponents() {
                 >
                     {[...Array(4)].map((_, i) => (
                         <div key={i} className="flex gap-8 px-4 text-2xl md:text-4xl font-display font-black uppercase tracking-wider">
-                            <span>Innovación</span> • <span>Desarrollo</span> • <span>Creatividad</span> • <span>Tecnología</span> •
+                            {t("hero.marquee").split(" · ").map((word, idx) => (
+                                <span key={idx}>{word} • </span>
+                            ))}
                         </div>
                     ))}
                 </motion.div>
             </div>
             <section id='about'>
                 <h3 className='justify-center items-center text-center mt-20 mx-auto max-w-7xl'>
-                    <SparklesText>Sobre <span className='text-[#2563eb] dark:text-[#C8FF00]'>Mi</span></SparklesText>
+                    <SparklesText>{t("hero.aboutMe")}</SparklesText>
 
                     <div className="text-center text-2xl md:text-3xl lg:text-4xl font-display leading-tight mt-10">
                         <p className="leading-relaxed">
-                            Soy un{" "}
+                            {t("hero.aboutDescription1.intro")}
                             <Highlighter action="underline" color="#C8FF00">
-                                Desarrollador Full Stack
-                            </Highlighter>{" "}
-                            con experiencia en la creación de aplicaciones web escalables y de alto rendimiento. En el frontend, domino tecnologías modernas como{" "}
+                                {t("hero.aboutDescription1.role")}
+                            </Highlighter>
+                            {t("hero.aboutDescription1.experience")}
                             <Highlighter action="highlight" color="#C8FF00">
-                                ,<span className='text-[#0A0A0A] font-bold'>
-                                    React, Angular y Astro
+                                <span className='text-[#0A0A0A] font-bold'>
+                                    {t("hero.aboutDescription1.frontend")}
                                 </span>
                             </Highlighter>
-                            , construyendo interfaces intuitivas con{" "}
+                            {t("hero.aboutDescription1.interfaces")}
                             <Highlighter action="underline" color="#0088cc">
-                                HTML5, CSS3 y JavaScript
+                                {t("hero.aboutDescription1.webTech")}
                             </Highlighter>
-                            . En el backend, desarrollo APIs robustas y servicios escalables utilizando{" "}
+                            {t("hero.aboutDescription1.backend")}
                             <Highlighter action="highlight" color="#0088cc">
                                 <span className='text-[#0A0A0A] font-bold'>
-                                    Python, C#, Java y Node.js
+                                    {t("hero.aboutDescription1.backendTech")}
                                 </span>
                             </Highlighter>
                             .
                         </p>
                         <p className="leading-relaxed mt-4">
-                            Además, cuento con experiencia en el campo de la{" "}
+                            {t("hero.aboutDescription2.intro")}
                             <Highlighter action="underline" color="#C8FF00">
-                                Minería de Texto
-                            </Highlighter>{" "}
-                            y{" "}
+                                {t("hero.aboutDescription2.textMining")}
+                            </Highlighter>
+                            {t("hero.aboutDescription2.and")}
                             <Highlighter action="highlight" color="#C8FF00">
                                 <span className='text-[#0A0A0A] font-bold'>
-                                    Machine Learning
+                                    {t("hero.aboutDescription2.ml")}
                                 </span>
                             </Highlighter>
-                            , aplicando técnicas de procesamiento de lenguaje natural y modelos predictivos para extraer insights valiosos de datos no estructurados. Mi enfoque combina la atención al detalle en el diseño de experiencias de usuario con sólidas prácticas de arquitectura backend y ciencia de datos, asegurando aplicaciones{" "}
+                            {t("hero.aboutDescription2.details")}
                             <Highlighter action="underline" color="#0088cc">
-                                funcionales, mantenibles e inteligentes
+                                {t("hero.aboutDescription2.qualities")}
                             </Highlighter>
-                            .
+                            {t("hero.aboutDescription2.end")}
                         </p>
                     </div>
                 </h3>
@@ -146,7 +150,7 @@ export default function HeroComponents() {
                         viewport={{ once: true }}
                         className="text-4xl md:text-6xl font-display font-black tracking-tighter mb-12 text-main"
                     >
-                        HABILIDADES <span className="text-[#2563eb] dark:text-[#CCFF00]">TÉCNICAS.</span>
+                        {t("hero.technicalSkills")}
                     </motion.h2>
                     <div className="flex flex-wrap justify-center gap-4">
                         {SKILLS.map((skill, i) => (

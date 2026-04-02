@@ -1,0 +1,102 @@
+{
+  "navbar": {
+    "cv": "CV",
+    "projects": "Projects",
+    "about": "About me",
+    "skills": "Skills"
+  },
+  "hero": {
+    "title": "Full Stack Developer",
+    "subtitleLine1": "CREATING",
+    "subtitleLine2": "DIGITAL",
+    "subtitleLine3": "EXPERIENCES",
+    "seeProjects": "See Projects",
+    "contact": "Contact me",
+    "aboutMe": "About Me",
+    "aboutDescription1": {
+      "intro": "I am a ",
+      "role": "Full Stack Developer",
+      "experience": " with experience in creating scalable and high-performance web applications. On the frontend, I master modern technologies like ",
+      "frontend": "React, Angular and Astro",
+      "interfaces": ", building intuitive interfaces with ",
+      "webTech": "HTML5, CSS3 and JavaScript",
+      "backend": ". On the backend, I develop robust APIs and scalable services using ",
+      "backendTech": "Python, C#, Java and Node.js"
+    },
+    "aboutDescription2": {
+      "intro": "Additionally, I have experience in the field of ",
+      "textMining": "Text Mining",
+      "and": " and ",
+      "ml": "Machine Learning",
+      "details": ", applying natural language processing techniques and predictive models to extract valuable insights from unstructured data. My approach combines attention to detail in user experience design with solid backend architecture and data science practices, ensuring ",
+      "qualities": "functional, maintainable and intelligent",
+      "end": " applications."
+    },
+    "technicalSkills": "TECHNICAL SKILLS.",
+    "marquee": "Innovation · Development · Creativity · Technology"
+  },
+  "projects": {
+    "title": "PROJECTS.",
+    "description": "A selection of my most recent work, combining innovative design and cutting-edge technology.",
+    "web": "Web",
+    "python": "Python",
+    "seeDemo": "View demo",
+    "github": "GitHub"
+  },
+  "cv": {
+    "title": "CURRICULUM.",
+    "getCV": "Get CV",
+    "fullName": "ADRIAN DEV",
+    "role": "Full Stack Developer",
+    "experience": "Work Experience",
+    "education": "Education",
+    "skills": "Skills",
+    "languages": "Languages",
+    "spanish": "Spanish",
+    "native": "Native",
+    "english": "English",
+    "englishLevel": "C1 Advanced",
+    "degree": "Software Engineering",
+    "university": "Technological University",
+    "period": "2018 - 2022",
+    "experiences": {
+      "allnovu": {
+        "role": "Software Developer",
+        "company": "ALL NOVU",
+        "period": "Aug 2025 – Present",
+        "location": "Havana, Cuba",
+        "items": [
+          "Developed the official brand website allnovu.com, showcasing the complete catalog of brand appliances.",
+          "Developed Cuba's first solar calculator, available at allnovu.com/consumo, where users can calculate their energy consumption and receive recommendations for solar panels and inverters.",
+          "Developed an e-commerce platform for the same brand, designed for vertical promotional screens, where users can purchase brand products directly; additionally, when the screen is in standby mode, brand promotions are displayed.",
+          "Developed an automation to create automated Excel spreadsheets and upload them to Google Drive, which served as a knowledge base for training an artificial intelligence model.",
+          "Built the knowledge base for an AI model specialized in appliance sales."
+        ]
+      },
+      "cip": {
+        "role": "Software Developer",
+        "company": "CIP",
+        "period": "Aug 2022 – May 2025",
+        "location": "Havana, Cuba",
+        "items": [
+          "Developed a system capable of detecting custom named entities that help with information extraction from news portals.",
+          "Developed a web scraper to gather relevant information from all national and international news portals. Additionally, a statistics system was created to visualize relevant extracted information, such as topics that appear most frequently in articles, and display a word cloud with the most used keywords in articles.",
+          "Implemented a Big Data architecture for text stream analysis using open-source technologies like Apache Kafka, Apache Solr, Apache Spark and MongoDB. Analysis tasks include text classification, named entity recognition, keyword extraction and sentiment analysis. This facilitates decision-making for data analysts.",
+          "Implemented a document similarity algorithm that identifies and compares similar or identical documents to a specific document. This tool is crucial for evaluating content uniqueness in media and quantifying the level of news replication across different news sites.",
+          "Developed a comprehensive web platform called SAI (Information Analysis System) using Node.js and Next.js. This platform centralizes and unifies all the Center's tools, offering a comprehensive solution for media information analysis and management. The main features and functionalities of SAI include:",
+          "  1. Named entity recognition to identify and classify key elements in texts.",
+          "  2. Multi-term tag cloud generation, providing an intuitive visualization of the most relevant topics.",
+          "  3. Automatic PDF report generation on media coverage, with the ability to send them via email.",
+          "  4. System for generating detailed media statistics, allowing in-depth quantitative analysis.",
+          "  5. Interactive dashboard for efficient media control and monitoring.",
+          "  6. Advanced search engine integrated with the Apache Solr database enabling fast and accurate searches.",
+          "  7. User profile management and creation system to personalize and automate report delivery."
+        ]
+      }
+    }
+  },
+  "layout": {
+    "title": "Adrián. — Full Stack Developer",
+    "description": "Full stack development and digital design portfolio."
+  }
+}

@@ -1,48 +1,29 @@
 import React from "react";
 import { Timeline } from "@/components/ui/timeline";
-import { Briefcase, Code, Download, GraduationCap, Mail } from "lucide-react"; // Ajusta según los iconos que uses
+import { Briefcase, Code, Download, GraduationCap, Mail } from "lucide-react";
 import { GitHubLogoIcon, LinkedInLogoIcon } from "@radix-ui/react-icons";
-const SKILLS = [
-    "JavaScript", "TypeScript", "React & Next.js", "Node.js & Express", "Astro", "Angular", "Python", "JAVA", "Machine Learning",
-    "Tailwind CSS", "MySQL", "MongoDB", "Prisma", "PostgreSQL", "Git & CI/CD", "Django", "Apache Solr",
-    "Apache Kafka", "NLP", "Flask & FastApi"
-];
+import { useLanguage } from "../../hooks/useLanguage";
+
 export default function CV() {
+    const { t } = useLanguage();
+
     const EXPERIENCE = [
         {
-            role: "Software Developer",
-            company: "ALL NOVU",
-            period: "Ago 2025 – Presente",
-            location: "La Habana, Cuba",
-            items: [
-                "Desarrollé el sitio web oficial de la marca allnovu.com, que presenta el catálogo completo de electrodomésticos de la marca.",
-                "Desarrollé la primera calculadora solar de Cuba, disponible en allnovu.com/consumo, donde los usuarios pueden calcular su consumo energético y recibir recomendaciones de paneles solares e inversores.",
-                "Desarrollé una plataforma de comercio electrónico para la misma marca, diseñada para pantallas promocionales verticales, donde los usuarios pueden comprar los productos de la marca directamente; adicionalmente, cuando la pantalla está en modo de espera, se proyectan las promociones de la marca.",
-                "Desarrollé una automatización para crear hojas de cálculo de Excel automatizadas y subirlas a Google Drive, que sirvió como base de conocimiento para entrenar un modelo de inteligencia artificial.",
-                "Construí la base de conocimiento para un modelo de IA especializado en la venta de electrodomésticos.",
-            ],
+            role: t("cv.experiences.allnovu.role"),
+            company: t("cv.experiences.allnovu.company"),
+            period: t("cv.experiences.allnovu.period"),
+            location: t("cv.experiences.allnovu.location"),
+            items: t("cv.experiences.allnovu.items"),
         },
         {
-            role: "Software Developer",
-            company: "CIP",
-            period: "Ago 2022 – May 2025",
-            location: "La Habana, Cuba",
-            items: [
-                "Desarrollé un sistema capaz de detectar entidades nombradas personalizadas que ayudan con la extracción de información de portales de noticias.",
-                "Desarrollé un web scraper para recopilar información relevante de todos los portales de noticias nacionales e internacionales. Además, se creó un sistema de estadísticas para visualizar la información extraída relevante, como los temas que aparecen con mayor frecuencia en los artículos, y mostrar una nube de palabras con las palabras clave más utilizadas en los artículos.",
-                "Implementé una arquitectura Big Data para el análisis de flujos de texto utilizando tecnologías de código abierto como Apache Kafka, Apache Solr, Apache Spark y MongoDB. Las tareas de análisis incluyen clasificación de texto, reconocimiento de entidades nombradas, extracción de palabras clave y análisis de sentimientos. Esto facilita la toma de decisiones para los analistas de datos.",
-                "Implementé un algoritmo de similitud documental que identifica y compara documentos similares o idénticos a un documento específico. Esta herramienta es crucial para evaluar la unicidad del contenido en los medios y cuantificar el nivel de replicación de noticias en diferentes sitios de noticias.",
-                "Desarrollé una plataforma web integral llamada SAI (Sistema de Análisis de Información) utilizando Node.js y Next.js. Esta plataforma centraliza y unifica todas las herramientas del Centro, ofreciendo una solución integral para el análisis y gestión de información mediática. Las principales características y funcionalidades de SAI incluyen:",
-                "  1. Reconocimiento de entidades nombradas para identificar y clasificar elementos clave en los textos.",
-                "  2. Generación de nubes de etiquetas multi-término, proporcionando una visualización intuitiva de los temas más relevantes.",
-                "  3. Creación automática de informes PDF sobre cobertura mediática, con capacidad de enviarlos por correo electrónico.",
-                "  4. Sistema para generar estadísticas detalladas de medios, permitiendo un análisis cuantitativo en profundidad.",
-                "  5. Dashboard interactivo para un control y monitoreo eficiente de los medios.",
-                "  6. Motor de búsqueda avanzado integrado con la base de datos Apache Solr que permite búsquedas rápidas y precisas.",
-                "  7. Sistema de gestión y creación de perfiles de usuario para personalizar y automatizar la entrega de informes.",
-            ],
+            role: t("cv.experiences.cip.role"),
+            company: t("cv.experiences.cip.company"),
+            period: t("cv.experiences.cip.period"),
+            location: t("cv.experiences.cip.location"),
+            items: t("cv.experiences.cip.items"),
         },
     ];
+
     const SKILLS = [
         "Python", "Java", "TypeScript", "JavaScript", "C#",
         "React", "Next.js", "Angular", "Astro",
@@ -62,18 +43,17 @@ export default function CV() {
                         <button className="flex items-center gap-2 bg-[#2563eb] dark:bg-[#C8FF00] text-white dark:text-black px-8 py-4 rounded-full font-bold hover:bg-[#2563eb]/85 dark:hover:bg-[#C8FF00]/85 transition-colors border border-transparent hover:border-accent">
                             <Download size={20} />
                             <a href="https://drive.google.com/file/d/17PwtNhnC8WxPztyeRpM720rxQXpFzxZo/view?usp=drive_link">
-                                Obtener CV
+                                {t("cv.getCV")}
                             </a>
                         </button>
                     </div>
                 </div>
                 <div className="bg-card max-w-5xl items-center justify-center mx-auto print:bg-white border border-main print:border-none rounded-[2rem] print:rounded-none p-8 md:p-16 print:p-0 shadow-2xl print:shadow-none">
 
-                    {/* Header */}
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-main print:border-gray-300 pb-10 mb-10 gap-6">
                         <div>
-                            <h3 className="text-5xl md:text-7xl font-display font-black text-main print:text-black tracking-tighter">ADRIAN <span className="text-[#2563eb] dark:text-[#C8FF00] print:text-gray-500">DEV</span></h3>
-                            <p className="text-xl md:text-2xl text-muted print:text-gray-600 mt-2 font-light">Desarrollador Full Stack</p>
+                            <h3 className="text-5xl md:text-7xl font-display font-black text-main print:text-black tracking-tighter">{t("cv.fullName")}</h3>
+                            <p className="text-xl md:text-2xl text-muted print:text-gray-600 mt-2 font-light">{t("cv.role")}</p>
                         </div>
                         <div className="flex flex-col gap-2 text-muted print:text-gray-600 font-mono text-sm">
                             <a href="mailto:adriandfl99@gmail.com" className="flex items-center gap-2 hover:text-[#2563eb] dark:hover:text-[#C8FF00] print:hover:text-black transition-colors"><Mail size={16} /> adriandfl99@gmail.com</a>
@@ -84,11 +64,10 @@ export default function CV() {
 
                     <div className="grid grid-cols-1 lg:grid-cols-3 gap-16">
 
-                        {/* Left Column: Experience */}
                         <div className="lg:col-span-2 space-y-12">
                             <section>
                                 <h4 className="flex items-center gap-3 text-2xl font-display font-bold text-main print:text-black mb-8">
-                                    <Briefcase className="text-[#2563eb] dark:text-[#C8FF00] print:text-gray-800" /> Experiencia Laboral
+                                    <Briefcase className="text-[#2563eb] dark:text-[#C8FF00] print:text-gray-800" /> {t("cv.experience")}
                                 </h4>
                                 <div className="space-y-10">
                                     {EXPERIENCE.map((exp, i) => (
@@ -116,22 +95,21 @@ export default function CV() {
 
                             <section>
                                 <h4 className="flex items-center gap-3 text-2xl font-display font-bold text-main print:text-black mb-8">
-                                    <GraduationCap className="text-[#2563eb] dark:text-[#C8FF00] print:text-gray-800" /> Educación
+                                    <GraduationCap className="text-[#2563eb] dark:text-[#C8FF00] print:text-gray-800" /> {t("cv.education")}
                                 </h4>
                                 <div className="relative pl-6 border-l border-main print:border-gray-300">
                                     <div className="absolute w-3 h-3 bg-[#2563eb] dark:bg-[#C8FF00] print:bg-gray-800 rounded-full -left-[6.5px] top-2" />
-                                    <h5 className="text-xl font-bold text-main print:text-black mb-1">Ingeniería en Software</h5>
-                                    <p className="text-lg text-muted print:text-gray-700 mb-2">Universidad Tecnológica</p>
-                                    <p className="text-muted print:text-gray-600">2018 - 2022</p>
+                                    <h5 className="text-xl font-bold text-main print:text-black mb-1">{t("cv.degree")}</h5>
+                                    <p className="text-lg text-muted print:text-gray-700 mb-2">{t("cv.university")}</p>
+                                    <p className="text-muted print:text-gray-600">{t("cv.period")}</p>
                                 </div>
                             </section>
                         </div>
 
-                        {/* Right Column: Skills & Profile */}
                         <div className="space-y-12">
                             <section>
                                 <h4 className="flex items-center gap-3 text-2xl font-display font-bold text-main print:text-black mb-6">
-                                    <Code className="text-[#2563eb] dark:text-[#C8FF00] print:text-gray-800" /> Habilidades
+                                    <Code className="text-[#2563eb] dark:text-[#C8FF00] print:text-gray-800" /> {t("cv.skills")}
                                 </h4>
                                 <div className="flex flex-wrap gap-3">
                                     {SKILLS.map(skill => (
@@ -143,15 +121,15 @@ export default function CV() {
                             </section>
 
                             <section>
-                                <h4 className="text-2xl font-display font-bold text-main print:text-black mb-6">Idiomas</h4>
+                                <h4 className="text-2xl font-display font-bold text-main print:text-black mb-6">{t("cv.languages")}</h4>
                                 <ul className="space-y-4 text-muted print:text-gray-600">
                                     <li className="flex justify-between items-center border-b border-main print:border-gray-200 pb-2">
-                                        <span className="font-medium text-main print:text-black">Español</span>
-                                        <span className="text-sm font-mono">Nativo</span>
+                                        <span className="font-medium text-main print:text-black">{t("cv.spanish")}</span>
+                                        <span className="text-sm font-mono">{t("cv.native")}</span>
                                     </li>
                                     <li className="flex justify-between items-center border-b border-main print:border-gray-200 pb-2">
-                                        <span className="font-medium text-main print:text-black">Inglés</span>
-                                        <span className="text-sm font-mono">C1 Avanzado</span>
+                                        <span className="font-medium text-main print:text-black">{t("cv.english")}</span>
+                                        <span className="text-sm font-mono">{t("cv.englishLevel")}</span>
                                     </li>
                                 </ul>
                             </section>
