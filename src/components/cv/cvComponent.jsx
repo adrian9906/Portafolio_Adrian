@@ -38,17 +38,17 @@ export default function CV() {
         <div className="bg-sec mt-10">
             <section id="cv">
                 <div className="max-w-7xl mx-auto">
-                    <div className="print:hidden flex flex-col md:flex-row justify-center md:justify-between items-end mb-16 gap-6">
-                        <h2 className="text-5xl md:text-7xl font-display font-black tracking-tighter text-main">CURRICULUM<span className="text-[#2563eb] dark:text-[#C8FF00]">.</span></h2>
-                        <button className="flex items-center gap-2 bg-[#2563eb] dark:bg-[#C8FF00] text-white dark:text-black px-8 py-4 rounded-full font-bold hover:bg-[#2563eb]/85 dark:hover:bg-[#C8FF00]/85 transition-colors border border-transparent hover:border-accent">
-                            <Download size={20} />
+                    <div className="print:hidden flex flex-row justify-between md:items-end mb-8 md:mb-16 gap-6">
+                        <h2 className="text-3xl md:text-7xl font-display font-black tracking-tighter text-main">CURRICULUM<span className="text-[#2563eb] dark:text-[#C8FF00]">.</span></h2>
+                        <button className="flex items-center w-[150px] h-[40px] md:w-[150px] gap-2 bg-[#2563eb] dark:bg-[#C8FF00] text-white dark:text-black px-8 py-4 rounded-full font-bold hover:bg-[#2563eb]/85 dark:hover:bg-[#C8FF00]/85 transition-colors border border-transparent hover:border-accent">
+                            <Download className="w-4 h-4 md:w-5 md:h-5" />
                             <a href="https://drive.google.com/file/d/17PwtNhnC8WxPztyeRpM720rxQXpFzxZo/view?usp=drive_link">
                                 {t("cv.getCV")}
                             </a>
                         </button>
                     </div>
                 </div>
-                <div className="bg-card max-w-5xl items-center justify-center mx-auto print:bg-white border border-main print:border-none rounded-[2rem] print:rounded-none p-8 md:p-16 print:p-0 shadow-2xl print:shadow-none">
+                <div className="bg-card max-w-2xl md:max-w-5xl items-center justify-center mx-auto print:bg-white border border-main print:border-none rounded-[2rem] print:rounded-none p-8 md:p-16 print:p-0 shadow-2xl print:shadow-none">
 
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-end border-b border-main print:border-gray-300 pb-10 mb-10 gap-6">
                         <div>
